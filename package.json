@@ -12,8 +12,9 @@
     "webpack-build": "node_modules/typescript/bin/tsc && npx webpack ./src/main.ts && sed \"s/\\/src\\/main\\.ts/\\.\\/main\\.js/\" index.html > ./dist/index.html"
   },
   "dependencies": {
-    "scenerystack": "~0.0.5",
-    "jquery": "~2.1.0"
+    "scenerystack": "~0.0.6",
+    "jquery": "~2.1.0",
+    "three": "^0.104.0"
   },
   "devDependencies": {
     "vite": "^5.4.10",

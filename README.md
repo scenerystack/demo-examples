@@ -23,10 +23,10 @@ npm install
 The following will run a server on your local machine, and you can navigate to the URL to see the demo.
 
 ```sh
-npx vite serve
+npx vite preview
 ```
 
-It will print out the URL to navigate to, e.g. http://localhost:5173/.
+It will print out the URL to navigate to, e.g. http://localhost:4173/. Browse to that port to see the demo!
 
 (4) Built it:
 
@@ -35,6 +35,8 @@ npx vite build
 ```
 
 It will be built into the `dist` directory, where dist/index.html is the entry point. The dist directory can be moved/served from wherever.
+
+Then you can browse the built version in `dist/`.
 
 (5) Lint it:
 

@@ -4,8 +4,6 @@
  * @author Jonathan Olson (PhET Interactive Simulations)
  */
 
-import './main.css';
-
 import $ from 'jquery';
 import { platform } from 'scenerystack/phet-core';
 import { Bounds2, Range } from 'scenerystack/dot';

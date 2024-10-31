@@ -4,9 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "vite-serve": "npx vite preview",
+    "vite-build": "node_modules/typescript/bin/tsc && npx vite build",
+    "parcel-serve": "npx parcel index.html",
+    "parcel-build": "node_modules/typescript/bin/tsc && npx parcel build index.html --public-url .",
+    "webpack-serve": "mkdir -p webpack-assets && sed \"s/\\/src\\/main\\.ts/\\.\\/main\\.js/\" index.html > ./webpack-assets/index.html && npx webpack serve ./src/main.ts --static webpack-assets --mode development",
+    "webpack-build": "node_modules/typescript/bin/tsc && npx webpack ./src/main.ts && sed \"s/\\/src\\/main\\.ts/\\.\\/main\\.js/\" index.html > ./dist/index.html"
   },
   "dependencies": {
     "scenerystack": "~0.0.5",
@@ -15,6 +18,10 @@
   "devDependencies": {
     "vite": "^5.4.10",
     "parcel": "^2.12.0",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0",
+
     "eslint": "~8.28.0",
     "typescript": "~5.3.3",
     "@types/jquery": "~3.5.13",

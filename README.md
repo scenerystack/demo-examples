@@ -1,45 +1,42 @@
-demo-examples
+SceneryStack examples with Vite/Parcel.
 ================
 
-Examples of SceneryStack using Vite.
-
-### Quick Start
-
-(1) Clone demo-examples:
+## Clone and NPM install
 
 ```sh
 git clone https://github.com/scenerystack/demo-examples.git
-```
-
-(2) Install dev dependencies:
-
-```sh
 cd demo-examples
 npm install
 ```
 
-(3) Run it from a browser:
-
-The following will run a server on your local machine, and you can navigate to the URL to see the demo.
+## Run with Vite
 
 ```sh
 npx vite preview
 ```
 
-It will print out the URL to navigate to, e.g. http://localhost:4173/. Browse to that port to see the demo!
+will run a server, browse to the URL (usually http://localhost:4173/) to see the demo.
 
-(4) Built it:
+## Run with Parcel
+
+```sh
+npx parcel index.html
+```
+
+will run a server, browse to the URL (usually http://localhost:1234/) to see the demo.
+
+## Build with Vite
 
 ```sh
 npx vite build
 ```
 
-It will be built into the `dist` directory, where dist/index.html is the entry point. The dist directory can be moved/served from wherever.
+This will build into the `dist` directory, view dist/index.html in a browser.
 
-Then you can browse the built version in `dist/`.
-
-(5) Lint it:
+## Build with Parcel
 
 ```sh
-npx eslint .
+npx parcel build index.html --public-url .
 ```
+
+This will build into the `dist` directory, view dist/index.html in a browser.

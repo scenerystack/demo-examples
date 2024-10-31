@@ -4,109 +4,66 @@
  * @author Jonathan Olson (PhET Interactive Simulations)
  */
 
-import $ from 'jquery';
-import { platform } from 'scenerystack/phet-core';
-import { Bounds2, Range } from 'scenerystack/dot';
-import { Property, NumberProperty, PatternStringProperty, StringProperty } from 'scenerystack/axon';
-import { Node, Display, Text, VBox, Font, AlignBox, AnimatedPanZoomListener } from 'scenerystack/scenery';
-import { TextPushButton, AccordionBox } from 'scenerystack/sun';
-import { ArrowNode, NumberControl, Drawer } from 'scenerystack/scenery-phet';
-import { Animation } from 'scenerystack/twixt';
-import { StringUtils } from 'scenerystack/phetcommon';
+import { Range } from 'scenerystack/dot';
+import { NumberProperty } from 'scenerystack/axon';
+import { AlignBox, Display, Font, Node, VBox } from 'scenerystack/scenery';
+import { TextPushButton } from 'scenerystack/sun';
+import { NumberControl } from 'scenerystack/scenery-phet';
 import { enableAssert } from 'scenerystack/assert';
 
 enableAssert();
 
-const scene = new Node();
+// example-button-and-slider
+{
+  const scene = new Node( {
+    renderer: 'svg'
+  } );
 
-const rootNode = new Node( {
-  renderer: 'svg',
-  children: [ scene ]
-} );
+  const mainFont = new Font( { family: 'sans-serif', size: 20 } );
+  const boldFont = new Font( { family: 'sans-serif', size: 20, weight: 'bold' } );
 
-const buttonPressPatternStringProperty = new StringProperty( 'Button presses: {{count}}' );
+  const countProperty = new NumberProperty( 0 );
 
-const font = new Font( {
-  family: 'sans-serif',
-  size: 25
-} );
+  const mainBox = new VBox( {
+    spacing: 10,
+    children: [
+      new TextPushButton( 'Increment Count', {
+        font: mainFont,
+        listener: () => { countProperty.value++; }
+      } ),
+      new NumberControl( 'Count', countProperty, new Range( 0, 100 ), {
+        accessibleName: 'Count Slider',
+        titleNodeOptions: {
+          font: mainFont,
+        },
+        numberDisplayOptions: {
+          textOptions: {
+            font: boldFont,
+          }
+        }
+      } )
+    ]
+  } );
 
-const display = new Display( rootNode, {
-  allowWebGL: true,
-  allowBackingScaleAntialiasing: true,
-  allowSceneOverflow: false,
-  accessibility: true,
-  backgroundColor: '#eee',
+  scene.addChild( new AlignBox( mainBox, {
+    margin: 20,
+    left: 0,
+    top: 0
+  } ) );
 
-  assumeFullWindow: true,
-  listenToOnlyElement: false
-} );
-document.body.appendChild( display.domElement );
+  const display = new Display( scene, {
+    backgroundColor: '#eee',
 
-const zoomListener = new AnimatedPanZoomListener( scene );
-display.addInputListener( zoomListener );
+    assumeFullWindow: false,
+    listenToOnlyElement: true,
 
-const layoutBoundsProperty = new Property( new Bounds2( 0, 0, window.innerWidth, window.innerHeight ) );
+    container: document.querySelector( '#example-button-and-slider' )! as HTMLElement
+  } );
 
-const countProperty = new NumberProperty( 0 );
+  display.initializeEvents();
 
-const mainBox = new VBox( {
-  spacing: 10,
-  children: [
-    new TextPushButton( 'Test', {
-      font: font,
-      listener: () => { countProperty.value++; }
-    } ),
-    new Text( new PatternStringProperty( buttonPressPatternStringProperty, { count: countProperty } ), {
-      font: font
-    } ),
-    new NumberControl( 'Count', countProperty, new Range( 0, 100 ), {} ),
-    new ArrowNode( 0, 0, 100, 0, {} ),
-    new AccordionBox( new Text( 'Accordion Box' ) ),
-    new Drawer( new Text( 'Accordion Box' ) )
-  ]
-} );
-
-scene.addChild( new AlignBox( mainBox, {
-  alignBoundsProperty: layoutBoundsProperty,
-  xAlign: 'center',
-  yAlign: 'top',
-  margin: 20
-} ) );
-
-display.initializeEvents();
-
-let resizePending = true;
-const resize = () => {
-  resizePending = false;
-
-  const layoutBounds = new Bounds2( 0, 0, window.innerWidth, window.innerHeight );
-  display.setWidthHeight( layoutBounds.width, layoutBounds.height );
-  layoutBoundsProperty.value = layoutBounds;
-
-  if ( platform.mobileSafari ) {
-    window.scrollTo( 0, 0 );
-  }
-
-  // zoomListener.setTargetScale( scale );
-  zoomListener.setTargetBounds( layoutBounds );
-  zoomListener.setPanBounds( layoutBounds );
-};
-
-const resizeListener = () => { resizePending = true; };
-$( window ).resize( resizeListener );
-window.addEventListener( 'resize', resizeListener );
-window.addEventListener( 'orientationchange', resizeListener );
-window.visualViewport && window.visualViewport.addEventListener( 'resize', resizeListener );
-resize();
-
-display.updateOnRequestAnimationFrame( dt => {
-  if ( resizePending ) {
-    resize();
-  }
-
-  zoomListener.step( dt );
-} );
-
-console.log( Animation );
-console.log( StringUtils );
+  display.updateOnRequestAnimationFrame( () => {
+    display.width = Math.ceil( scene.width );
+    display.height = Math.ceil( scene.height );
+  } );
+}

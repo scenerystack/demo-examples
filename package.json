@@ -12,9 +12,17 @@
     "webpack-build": "node_modules/typescript/bin/tsc && npx webpack ./src/main.ts && sed \"s/\\/src\\/main\\.ts/\\.\\/main\\.js/\" index.html > ./dist/index.html"
   },
   "dependencies": {
-    "scenerystack": "~0.0.6",
+    "scenerystack": "^0.0.7",
     "jquery": "~2.1.0",
-    "three": "^0.104.0"
+    "three": "^0.104.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-reconciler": "^0.29.2",
+
+    "@mui/material": "^6.1.6",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@fontsource/roboto": "^5.1.0"
   },
   "devDependencies": {
     "vite": "^5.4.10",
@@ -26,6 +34,9 @@
     "eslint": "~8.28.0",
     "typescript": "~5.3.3",
     "@types/jquery": "~3.5.13",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/react-reconciler": "^0.28.8",
 
     "@typescript-eslint/parser": "~6.18.1",
     "@typescript-eslint/eslint-plugin": "~6.18.1",

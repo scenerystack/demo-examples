@@ -8,7 +8,7 @@ import { Slider, Stack } from '@mui/material';
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Rectangle } from 'scenerystack/scenery';
-import { Scenery } from 'scenerystack/react';
+import { Scenery } from 'scenery-react';
 
 const Demo = () => {
   const [ size, setSize ] = useState<number>( 50 );

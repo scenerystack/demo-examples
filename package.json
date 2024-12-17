@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "scenerystack": "^0.0.9",
+    "scenery-react": "^0.0.1",
     "jquery": "~2.1.0",
     "three": "^0.104.0",
     "react": "^18.3.1",

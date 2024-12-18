@@ -12,8 +12,8 @@
     "webpack-build": "node_modules/typescript/bin/tsc && npx webpack ./src/main.ts && sed \"s/\\/src\\/main\\.ts/\\.\\/main\\.js/\" index.html > ./dist/index.html"
   },
   "dependencies": {
-    "scenerystack": "^0.0.12",
-    "scenery-react": "^0.0.3",
+    "scenerystack": "^0.0.13",
+    "scenery-react": "^0.0.4",
     "jquery": "~2.1.0",
     "three": "^0.104.0",
     "react": "^18.3.1",

@@ -12,10 +12,10 @@ npm install
 ## Run with Vite
 
 ```sh
-npx vite preview
+npx vite
 ```
 
-will run a server, browse to the URL (usually http://localhost:4173/) to see the demo.
+will run a server, browse to the URL (usually http://localhost:5173/) to see the demo.
 
 ## Run with Parcel
 
